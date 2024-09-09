@@ -1,30 +1,90 @@
-# Logs
-logs
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
 *.log
+
+# Dependency directories
+.pnp/
+.pnp.js
+
+# TypeScript
+*.tsbuildinfo
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# MacOS Finder
+.DS_Store
+
+# Log files
+*.log
+
+# npm package-lock
+package-lock.json
+
+# Yarn
+yarn-error.log
+
+# dotenv environment variables file
+.env
+.env.local
+.env.*.local
+
+# Next.js build output
+.next/
+out/
+
+# Nuxt.js build output
+.nuxt/
+static/
+
+# Serverless deployment directories
+.serverless/
+
+# Compiled TypeScript
+*.tsbuildinfo
+
+# Local environment files
+*.local
+
+# Terser logs
+*.tsbuildinfo
+
+# Package distributions
+*.tgz
+
+# npm debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-.DS_Store
-dist
-dist-ssr
-coverage
-*.local
+# Logs
+logs/
+*.log
 
-/cypress/videos/
-/cypress/screenshots/
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Misc
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.code-workspace
+*.tmproj
+*.tmproject
+*.idea/
 
-*.tsbuildinfo
+# Git tags
+tags
+
+# Local IDE files
+*.local
+
+# Local environment variables
+.env.local
+.env.*.local
