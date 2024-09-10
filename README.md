@@ -15,13 +15,13 @@ Aplicação web que forneça ao usuário um mapa e uma interface simples onde el
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/beatrizdaddea/geopixel-test.git
+      git clone https://github.com/beatrizdaddea/geopixel-test.git
    ```
 
 2. Navegue até o diretório do projeto:
 
    ```bash
-    cd weather-map
+      cd weather-map
    ```
 
 3. Instale as dependências:
@@ -32,22 +32,26 @@ Aplicação web que forneça ao usuário um mapa e uma interface simples onde el
 
 5. Rode a Aplicação:
    ```bash
-    npm run dev
+      npm run dev
    ```
 
 ## Outros Comandos
 
 ### Type-Check, Compile and Minify for Production
 
-```sh
+```bash
 npm run build
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
 
-```sh
+```bash
 npm run lint
 ```
+
+## Melhorias
+- Adição de Casos de Teste
+- Adição de um select: Cidades já consultadas
 
 ## Criador
 Este projeto foi desenvolvido por Beatriz Chieffi Failla D'Addea.
