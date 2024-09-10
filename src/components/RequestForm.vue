@@ -23,7 +23,12 @@
         </div>
         <div class="climate-container form-input">
           <label>Clima</label>
-          <input type="text" disabled :value="weatherData ? weatherData.description : '-'" />
+          <div class="climate-content">
+            <input type="text" disabled :value="weatherData ? weatherData.description : '-'" />
+            <img v-if="weatherData && weatherData.condition_slug"
+              :src="`https://assets.hgbrasil.com/weather/icons/conditions/${weatherData.condition_slug}.svg`"
+              :alt="weatherData.description">
+          </div>
         </div>
         <div class="maximum-container form-input">
           <label>Máxima</label>
@@ -42,7 +47,7 @@
         </div>
       </div>
       <div class="map-section">
-        <MapWrapper :coordinates="cityCoordinates" />
+        <MapWrapper class="display-map" :coordinates="cityCoordinates" />
       </div>
     </div>
 
@@ -125,7 +130,7 @@ const handleFetchWeather = async () => {
   }
 
   // Busca as coordenadas da cidade pela API de Geoencoding da OpenWeather
-  const apiKey = '';
+  const apiKey = '0b696f84c6de101cf0f2b3c8b1a666b3';
   const cityName = `${citySelected.value},BR`;
   const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
 
@@ -139,7 +144,7 @@ const handleFetchWeather = async () => {
     }
 
     // Buscar os dados de clima
-    const weatherApiKey = ""
+    const weatherApiKey = "f0fc03f7"
     const weatherUrl = `https://api.hgbrasil.com/weather?key=${weatherApiKey}&city_name=${cityName}&format=json-cors`;
     const weatherResponse = await axios.get(weatherUrl);
     const data = weatherResponse.data.results;
@@ -150,6 +155,9 @@ const handleFetchWeather = async () => {
     forecastData.value = data.forecast.slice(0, 3);  // Previsão para 3 dias
   } catch (error) {
     console.error('Error fetching weather or coordinates data:', error);
+
+    console.log('Moon Phase:', weatherData.value.moon_phase);
+    console.log('Image URL:', `https://assets.hgbrasil.com/weather/icons/moon/${weatherData.value.moon_phase}.png`);
   }
 };
 
@@ -164,6 +172,7 @@ const translateMoonPhase = (phase: string): string => {
     last_quarter: 'Quarto minguante',
     waning_crescent: 'Lua minguante'
   };
+
   return phases[phase] || phase;
 };
 
@@ -178,17 +187,42 @@ const translateMoonPhase = (phase: string): string => {
   width: 100%;
 }
 
+.climate-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+}
+
+.climate-container label {
+  margin-bottom: 5px;
+}
+
+.climate-content {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.climate-content input {
+  flex: 1;
+}
+
+.climate-content img {
+  height: auto;
+  max-width: 32px;
+}
+
 .form-container {
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 20px;
-  flex: 1 1 50%; 
-  max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  width: 25%;
 }
 
 .map-section {
-  flex: 1 1 50%;
+  width: 60%;
 }
 
 .title-content {
@@ -217,6 +251,10 @@ const translateMoonPhase = (phase: string): string => {
   border-radius: 5px;
   font-size: 16px;
   box-sizing: border-box;
+}
+
+.form-input img {
+  display: inline-flex;
 }
 
 .form-input input[disabled] {
@@ -299,28 +337,21 @@ const translateMoonPhase = (phase: string): string => {
 
 @media (max-width: 768px) {
   .main-container {
+    display: flex;
     flex-direction: column;
   }
 
-  .form-container,
-  .map-section {
+  .form-container {
     width: 100%;
-    max-width: none;
   }
 
-  .forecast-item {
-    padding: 10px;
+  .map-section {
+    height: 300px;
+    width: 100%;
   }
 
-  .forecast-container h2 {
-    font-size: 20px;
-  }
-
-  .forecast-date,
-  .forecast-temperature,
-  .forecast-condition,
-  .forecast-chance-rain {
-    font-size: 14px;
+  .forecast-section {
+    margin-top: 20px;
   }
 }
 </style>
