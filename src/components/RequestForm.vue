@@ -41,6 +41,9 @@
         <div class="moon-container form-input">
           <label>Fase da Lua</label>
           <input type="text" disabled :value="weatherData ? weatherData.moon_phase : '-'" />
+          <img v-if="weatherData && weatherData.moon_phase"
+            :src="`https://assets.hgbrasil.com/weather/moon/${weatherData.moon_phase}.svg`"
+            :alt="weatherData.moon_phase">
         </div>
         <div class="submit-btn">
           <button @click="handleFetchWeather">Consultar</button>
@@ -71,7 +74,6 @@
     </div>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref } from 'vue';
