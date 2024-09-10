@@ -39,7 +39,7 @@ watch(
       const view = map.value.getView();
       const lonLatCoords = fromLonLat(newCoordinates);
       view.setCenter(lonLatCoords);
-      view.setZoom(10);
+      view.setZoom(15);
     }
   }
 );
@@ -50,5 +50,4 @@ watch(
   height: 100%;
   width: 100%;
 }
-
 </style>
